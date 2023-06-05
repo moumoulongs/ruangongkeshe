@@ -2,8 +2,8 @@
 	<div class="login-box">
 			<h1>Register</h1>
 			<div class="input-box">
-				<i class="iconfont">&#xe609;</i>
-				<input type="text"  v-model="form.email" placeholder="邮箱"/>
+				<i class="iconfont">&#xe605;</i>
+				<input v-model="form.username" placeholder="用户名" />
 			</div>
 			<div class="input-box">
 				<i class="iconfont">&#xe605;</i>
@@ -13,11 +13,11 @@
 				<i class="iconfont">&#xe605;</i>
 				<input type="password" v-model="form.rePassword" placeholder="确认密码" />
 			</div>
-            <div class="input-box">
-				<i class="iconfont">&#xe605;</i>
-				<input type="password" v-model="form.username" placeholder="用户名" />
+			<div class="input-box">
+				<i class="iconfont">&#xe609;</i>
+				<input type="text"  v-model="form.email" placeholder="邮箱"/>
 			</div>
-			<button @click="submit">登录</button>
+			<button @click="submit">注册</button>
 		</div>
 </template>
 
@@ -30,10 +30,9 @@
 		data () {
 			return {
 				form: {
-                    "codeType": 0,
                     "email": "",
                     "password": "",
-                    "rePassword": "",
+					"rePassword":"",
                     "username": ""
                 }
 			}
@@ -41,13 +40,14 @@
 		methods: {
 			submit() {
 				let submitData = {
-					"codeType": 1,
                 	"email": this.form.email,
-                	"password": encrypt(this.form.password),
-                	"rePassword": encrypt(this.form.rePassword),
-                	"smsCode": this.form.smsCode,
+                	"password": this.form.password,
                 	"username": this.form.username
 				};
+				if(this.form.password != this.form.rePassword) {
+					alert("两次密码输入不一致");
+					return 0;
+				}
 				apiRegister(submitData).then(res => {
 					alert(res.data.msg);
                 	//操作成功
