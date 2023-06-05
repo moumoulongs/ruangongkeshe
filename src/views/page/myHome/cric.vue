@@ -9,12 +9,10 @@
 </template>
 
 <script>
-    import { apiGetCricList } from '../../../request/api';
 
     export default {
         name: 'cric',
         components: {
-            apiGetCricList
         },
         data () {
             return {
@@ -29,14 +27,7 @@
             }
         },
         created: function () {
-        console.log("created");
-        var _this = this;
-        console.log(1);
-        apiGetCricList(this.cricFrom).then(res => {
-          console.log(res);
-          _this.cricList = res.data.data.list;
-          console.log(_this.cricList);
-        });
+            
       },
     }
 </script>

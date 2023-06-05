@@ -22,10 +22,10 @@
 </template>
 
 <script>
-    import { apiRegister, apiSendEmail} from "../../../request/api"
+    import { apiRegister} from "../../../request/api"
 	export default {
 		components: {
-			apiRegister, apiSendEmail
+			apiRegister
 		},
 		data () {
 			return {
