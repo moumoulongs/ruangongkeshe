@@ -13,5 +13,8 @@ export const apiLogout = p => post('/rest/api/user/logout');
 //图书信息获取
 export const apiGetBook = p => post('/main',p);
 
+//订单获取
+export const apigetMyOrder = p => get('/getMyOrder',p)
+
 
 

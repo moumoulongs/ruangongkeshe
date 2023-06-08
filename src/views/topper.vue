@@ -4,6 +4,7 @@
             <ul>
                 <li><router-link to="/home">首页</router-link></li>
                 <li><router-link to="/resource">购物车</router-link></li>
+                <li><router-link to="/test">我的订单</router-link></li>
             </ul>
         </div>
         <div class="nav_right">
