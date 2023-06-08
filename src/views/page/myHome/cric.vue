@@ -1,73 +1,64 @@
 <template>
-    <div class="cric">
-        <div class="nav_s"></div>
-        <div class="cricList" v-for="(cric, index) in cricList" :key="index">
-            <span class="cric_index">1</span>
-            <a href="" class="cric_title">{{cric.title}}</a>
-        </div>
-    </div>
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>导航一</span>
+        </template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="1-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="1-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="1-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="1-4-1">选项1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="2">
+        <i class="el-icon-menu"></i>
+        <span slot="title">导航二</span>
+      </el-menu-item>
+      <el-menu-item index="3" disabled>
+        <i class="el-icon-document"></i>
+        <span slot="title">导航三</span>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <i class="el-icon-setting"></i>
+        <span slot="title">导航四</span>
+      </el-menu-item>
+    </el-menu>
 </template>
 
 <script>
-
-    export default {
-        name: 'cric',
-        components: {
-        },
-        data () {
-            return {
-                cricFrom: {
-                    pageNum: 1,
-                    pageSize: 10,
-                    checkStatus: 1
-                },
-                cricList: [
-
-                ]
-            }
-        },
-        created: function () {
-            
+export default {
+    methods: {
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
       },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
     }
+  }
 </script>
 
 <style>
-.cric {
-    margin-top: 50px;
-    padding: 0;
-    position: relative;
-    box-shadow:0 0 20px #666;
-    width: 86%;
-    left: 7%;
-}
-.nav_s {
-    position: relative;
-    width: 100%;
-    height: 56px;
-    background-color: rgb(255, 255, 255);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.13);
-}
-.cricList {
-    padding: 0;
-    margin: 0;
-    position: relative;
-    width: 100%;
-    height: 52px;
-    background-color: rgba(255, 255, 255, 0.849);
-    border-bottom: 1px solid rgba(180, 176, 176, 0.274);
-}
-.cric_index {
+.el-menu-vertical-demo {
     display: inline-block;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    width: 5%;
-    height: 97%;
-    right: 0;
-    border: 1px solid #fff;
-}
-.cric_title {
-    text-decoration: none;
+    float: right;
+    margin-top: 2%;
+    margin-right: 5%;
+    width: 15%;
 }
 </style>

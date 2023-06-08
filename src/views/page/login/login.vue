@@ -37,6 +37,7 @@
 			apiLogin(submitData).then(res => {
 				console.log(res);
 				if(res.data.code == 200) {
+					localStorage.setItem(token,1)
 					clearTimeout(this.timer);  //清除延迟执行 
 					const loading = this.$loading({
 						lock: 'true',
@@ -51,7 +52,7 @@
 					},1000);
 					this.$message.success('登录成功');
 				} else {
-					Notification.error(res.message.res)
+					this.$message.warning(res.data.message.res);
 				};
 			});
 		},

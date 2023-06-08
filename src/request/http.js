@@ -39,13 +39,6 @@ axios.interceptors.request.use(config => {
  * 服务器返回信息 -> [拦截的统一处理] -> 客户端JS获取到信息
  */
 axios.interceptors.response.use(res => {
-    let code = res.data.code;
-    let msg = res.data.msg;
-    if(code != 200) {
-        Notification.error(msg);
-    }else{
-        
-    }
     return res;
 },error => {
     Notification.error("没网")

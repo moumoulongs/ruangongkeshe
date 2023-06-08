@@ -2,11 +2,8 @@
 <div class="nav" :key="this.key">
         <div class="nav_left">
             <ul>
-                <li><router-link to="/home">社区</router-link></li>
-                <li><router-link to="/resource">资源</router-link></li>
-                <li><router-link to="/test">考试</router-link></li>
-                <li><router-link to="/addgroups">加群</router-link></li>
-                <li><router-link to="/essay/001">文章</router-link></li>
+                <li><router-link to="/home">首页</router-link></li>
+                <li><router-link to="/resource">购物车</router-link></li>
             </ul>
         </div>
         <div class="nav_right">

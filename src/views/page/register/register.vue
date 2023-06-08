@@ -45,18 +45,20 @@
                 	"username": this.form.username
 				};
 				if(this.form.password != this.form.rePassword) {
-					alert("两次密码输入不一致");
+					this.$message.warning("两次密码输入不一致");
 					return 0;
 				}
 				apiRegister(submitData).then(res => {
-					alert(res.data.msg);
                 	//操作成功
                 	if(res.data.code == 200) {
+						this.$message.success('注册成功');
 						clearTimeout(this.timer);
 						this.timer = setTimeout(() => {
 							this.$router.push('/login');
 						})
 					}
+				}).catch(res =>{
+					this.$message.warning(res.data.message.res);
 				});
 			},
 		}

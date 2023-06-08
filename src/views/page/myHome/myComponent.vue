@@ -1,9 +1,9 @@
 <template>
     <VueSlickCarousel v-bind="settings" class="carousel">
-     <div>1</div>
-     <div>2</div>
-     <div>3</div>
-     <div>4</div>
+     <img src="./c1.jpg">
+     <img src="./c2.jpg">
+     <img src="./c3.jpg">
+     <img src="./c4.jpg">
     </VueSlickCarousel>
 </template>
 
@@ -19,7 +19,7 @@ import VueSlickCarousel from 'vue-slick-carousel'
     data() {
       return {
         settings: {
-            "arrows": false,//其用箭头
+            "arrows": 0,//其用箭头
             "dots": true,//点指示器
             "infinite": true,//无限环绕
             "slidesToShow": 1,//要显示的数目
@@ -40,10 +40,11 @@ import VueSlickCarousel from 'vue-slick-carousel'
   color: rgba(144, 190, 230, 0.621);
 }
 .carousel {
+  display: inline-block;
   position: absolute;
   background-color: rgba(255, 255, 255, 0.473);
-  height: 460px;
-  width: 1200px;
+  height: 300px;
+  width: 800px;
   top: 0;
   bottom: 0;
   left: 0;
