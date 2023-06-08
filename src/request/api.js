@@ -10,5 +10,8 @@ export const apiRegister = p => post('/regist',p);
 //登出
 export const apiLogout = p => post('/rest/api/user/logout');
 
+//图书信息获取
+export const apiGetBook = p => post('/main');
+
 
 

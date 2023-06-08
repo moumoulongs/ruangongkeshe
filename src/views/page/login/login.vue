@@ -32,7 +32,7 @@
 			submit() {
 			let submitData = {
 				"username": this.form.username,
-				"password": encrypt(this.form.password)
+				"password": this.form.password
 			};
 			apiLogin(submitData).then(res => {
 				console.log(res);
