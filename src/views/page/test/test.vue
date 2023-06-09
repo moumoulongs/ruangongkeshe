@@ -25,6 +25,14 @@
         <span style="margin-left: 10px">{{ scope.row.TotalAmount }}</span>
       </template>
     </el-table-column>
+    <el-table-column
+      label="订单状态"
+      width="120">
+      <template slot-scope="scope">
+        <el-tag type="success" v-show=scope.row.state>已签收</el-tag>
+        <el-tag type="danger"  v-show=2-scope.row.state>未签收</el-tag>
+      </template>
+    </el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope">
         <el-button
@@ -46,6 +54,7 @@ import { apigetMyOrder, apitakeOrder } from '../../../request/api';
         orderData: []
       }
     },
+    inject: ["reload"],
     methods: {
       takeOrder (orderId) {
         let formData = new FormData();
@@ -53,6 +62,7 @@ import { apigetMyOrder, apitakeOrder } from '../../../request/api';
         apitakeOrder(formData).then(res => {
           if(res.data.code == 200) {
             this.$message.success("确认收货成功");
+            this.reload();
           } else {
             this.$message.warning("确认收货失败");
           }
