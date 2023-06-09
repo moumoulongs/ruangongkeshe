@@ -39,16 +39,15 @@
 		},
 		methods: {
 			submit() {
-				let submitData = {
-                	"email": this.form.email,
-                	"password": this.form.password,
-                	"username": this.form.username
-				};
+				let formData = new FormData()
+				formData.append("email",this.form.email);
+				formData.append("password",this.form.password);
+				formData.append("username",this.form.username);
 				if(this.form.password != this.form.rePassword) {
 					this.$message.warning("两次密码输入不一致");
 					return 0;
 				}
-				apiRegister(submitData).then(res => {
+				apiRegister(formData).then(res => {
                 	//操作成功
                 	if(res.data.code == 200) {
 						this.$message.success('注册成功');
@@ -56,6 +55,8 @@
 						this.timer = setTimeout(() => {
 							this.$router.push('/login');
 						})
+					}else{
+						this.$message.warning(res.data.message.res)
 					}
 				}).catch(res =>{
 					this.$message.warning(res.data.message.res);

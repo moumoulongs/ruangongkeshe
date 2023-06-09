@@ -9,10 +9,18 @@
         </div>
         <div class="nav_right">
             <ul>
-                <li v-if="isShow[0]"><router-link to="/login">登录</router-link></li>
-                <li v-if="isShow[0]"><router-link to="/register">注册</router-link></li>
-                <li v-if="isShow[1]"><router-link to="/">头像</router-link></li>
-                <li v-if="isShow[1]"><a @click="logOut">登出</a></li>
+               <li v-if="isShow[0]"><router-link to="/login">登录</router-link></li>
+               <li v-if="isShow[0]"><router-link to="/register">注册</router-link></li>
+               <li v-if="isShow[1]">
+                  <el-dropdown :hide-on-click="false">
+                     <span class="el-dropdown-link">
+                        <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar><i class="el-icon-arrow-down el-icon--right"></i>
+                     </span>
+                     <el-dropdown-menu slot="dropdown">
+                       <el-dropdown-item ><a @click = "logOut">退出登录</a></el-dropdown-item>
+                     </el-dropdown-menu>
+                  </el-dropdown>   
+               </li>
             </ul>  
         </div>
     </div >
@@ -36,6 +44,7 @@
                apiLogout().then(res => {
                localStorage.clear("token");
                console.log(localStorage.getItem("token"));
+               this.$message.success("退出登录成功");
                clearTimeout(this.timer);
                const loading = this.$loading({
 						lock: 'true',
@@ -48,7 +57,7 @@
                   this.$router.push('/');
                   location.reload();
                },1000);
-               this.$message.success(res.data.msg);
+               // this.$message.success(res.data.msg);
             });
             }else{
                return;

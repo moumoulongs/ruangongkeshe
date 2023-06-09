@@ -19,7 +19,7 @@ import VueSlickCarousel from 'vue-slick-carousel'
     data() {
       return {
         settings: {
-            "arrows": 0,//其用箭头
+            "arrows": false,//其用箭头
             "dots": true,//点指示器
             "infinite": true,//无限环绕
             "slidesToShow": 1,//要显示的数目

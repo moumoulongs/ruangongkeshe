@@ -28,16 +28,16 @@
 				}
 			}
 		},
+		inject: ["reload"],
 		methods: {
 			submit() {
-			let submitData = {
-				"username": this.form.username,
-				"password": this.form.password
-			};
-			apiLogin(submitData).then(res => {
+				let formData = new FormData()
+				formData.append("password",this.form.password);
+				formData.append("username",this.form.username);
+			apiLogin(formData).then(res => {
 				console.log(res);
 				if(res.data.code == 200) {
-					localStorage.setItem(token,1)
+					localStorage.setItem('token',1);
 					clearTimeout(this.timer);  //清除延迟执行 
 					const loading = this.$loading({
 						lock: 'true',

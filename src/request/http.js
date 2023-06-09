@@ -17,7 +17,10 @@ axios.defaults.timeout = 10000;
  * 设置请求传递数据的格式(服务器要求设置)
  * x-www-form-urlencoded
  */
-axios.defaults.headers['Content-Type'] = 'application/json';
+axios.defaults.headers['Content-Type'] = 'application/json; charset=utf-8;application/x-www-form-urlencoded';
+
+// axios.defaults.withCredentials = true // 携带cookie
+
 
 /**
  * 设置请求拦截器
@@ -26,9 +29,9 @@ axios.defaults.headers['Content-Type'] = 'application/json';
  * 每一次发送请求携带token
  */
 axios.interceptors.request.use(config => {
-    //携带token
-    let token = localStorage.getItem("token");
-    token && (config.headers.token = token);
+    //携带cookie
+    // let cookie = localStorage.getItem("cookie");
+    // cookie && (config.headers.cookie = cookie);
     return config;
 }, error => {
     return Promise.reject(error);
@@ -41,7 +44,7 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(res => {
     return res;
 },error => {
-    Notification.error("没网")
+    
 })
 
 /**

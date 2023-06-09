@@ -8,14 +8,12 @@ import AddGroups from '../views/page/addGroups/addGroups.vue'
 import Essay from '../views/page/essay/essay.vue'
 import Register from '../views/page/register/register.vue'
 import Login from '../views/page/login/login.vue'
-import AddCric from '../views/page/myHome/cric/addCric.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
     {path: '/', redirect: '/home'},
     { path: '/home', component: Home },
-    {path: '/addcric', component: AddCric},
     { path: '/resource', component: Resource },
     {path: '/test', component: Test},
     {path: '/addgroups', component: AddGroups},

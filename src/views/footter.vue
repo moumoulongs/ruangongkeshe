@@ -3,6 +3,7 @@
         <a href="#">动漫</a>
         <a href="">|</a>
         <a href="#">游戏</a>
+  </div>
 </template>
 
 <script>

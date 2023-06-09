@@ -4,120 +4,86 @@
     <myComponent class="cmt"></myComponent>
     <div class = "books">
       <span class = "book" v-for="(book,index) in books">
-        <img src="./001.jpg">
-        <p>书籍名称：{{ book.title }}</p>
+        <img src = "./001.jpg">
+        <p>{{ book.title }}</p>
         <p>书籍价格：￥{{ book.price }}</p>
-        <el-button size="medium">加入购物车</el-button>
+        <el-button size="medium" @click="atc(book.id)">加入购物车</el-button>
       </span>
+      <div class="block">
+        <span class="demonstration"></span>
+        <el-pagination
+          layout="prev, pager, next"
+          :current-page.sync="pagination.current"
+          :page-size="pagination.size"
+          @current-change="currentChange"
+          :total="50">
+        </el-pagination>
+      </div>
     </div>
   </div>
 </template>
 <script>
   import MyComponent from './myComponent.vue'
   import cric from './cric.vue'
-  import { apiGetBook } from '../../../request/api'
+  import { apiGetBook , apiaddBookToCar} from '../../../request/api'
 
 
 
   export default {
     components: {
-      MyComponent, apiGetBook, cric
+      MyComponent, apiGetBook, cric, apiaddBookToCar
     },
     data () {
       return {
-        books: [
-          {
-          "id":47,
-          "title":"1",
-          "author":"3",
-          "price":2,
-          "sales":4,
-          "stock":5,
-          "imgPath":"./001.jpg"
-          },
-          {
-          "id":47,
-          "title":"1",
-          "author":"3",
-          "price":2,
-          "sales":4,
-          "stock":5,
-          "imgPath":"./001.jpg"
-          },
-          {
-          "id":47,
-          "title":"1",
-          "author":"3",
-          "price":2,
-          "sales":4,
-          "stock":5,
-          "imgPath":"./001.jpg"
-          },
-          {
-          "id":47,
-          "title":"1",
-          "author":"3",
-          "price":2,
-          "sales":4,
-          "stock":5,
-          "imgPath":"./001.jpg"
-          },
-          {
-          "id":47,
-          "title":"1",
-          "author":"3",
-          "price":2,
-          "sales":4,
-          "stock":5,
-          "imgPath":"./001.jpg"
-          },
-          {
-          "id":47,
-          "title":"1",
-          "author":"3",
-          "price":2,
-          "sales":4,
-          "stock":5,
-          "imgPath":"./001.jpg"
-          },
-          {
-          "id":47,
-          "title":"1",
-          "author":"3",
-          "price":2,
-          "sales":4,
-          "stock":5,
-          "imgPath":"./001.jpg"
-          },
-          {
-          "id":47,
-          "title":"1",
-          "author":"3",
-          "price":2,
-          "sales":4,
-          "stock":5,
-          "imgPath":"./001.jpg"
-          },
-          {
-          "id":47,
-          "title":"1",
-          "author":"3",
-          "price":2,
-          "sales":4,
-          "stock":5,
-          "imgPath":"./001.jpg"
-          }
-        ],
+        pagination: {
+          current: 1,
+          size: 10//每页显示多少条数据
+        },
+        page:1,
+        books: [],
       }
     },
+    inject: ["reload"],
     methods: {
-        
+      currentChange(page) {
+        let formData = new FormData()
+        formData.append("pageNo",page);
+        apiGetBook(formData).then(res => {
+          this.books = res.data.message.res.books;
+          console.log(this.books)
+        })
+        // this.reload();
+      },
+      atc(id) {
+        console.log(document.cookie)
+        let formData = new FormData()
+        formData.append("bookId",id);
+        apiaddBookToCar(formData).then(res => {
+          if(res.data.code == 200) {
+            this.$message.success(res.data.message.res);
+          } else {
+            this.$message.warning(res.data.message.res);
+          }
+          
+        }).catch(res => {
+          this.$message.error("连接服务器失败");
+        })
+      }
     },
-    created: function () {
-      apiGetBook().then(res => {
-        // this.data.books = res.message.books;
+    beforeCreate: function () {
+      console.log("beforeCreated")
+      let formData = new FormData()
+        formData.append("pageNo",1);
+      apiGetBook(formData).then(res => {
+        
+        this.books = res.data.message.res.books;
+        console.log(res.data.message.res.books)
       })
-    }
+    },
+    created: function() {
+      console.log("Created")
+      console.log(document.cookie)
+    },
   }
 
 </script>
@@ -156,9 +122,12 @@
 .book > button{
   float: right;
 }
-.cmt {
+.cmt { /** 轮播图 */
   float: right;
   margin-right: 5%;
   margin-top: 1%;
 }
+.block {/**分页 */
+  margin-left: 31%;
+} 
 </style>
