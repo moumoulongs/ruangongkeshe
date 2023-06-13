@@ -1,6 +1,5 @@
 <template>
   <div class="body">
-    <cric></cric>
     <myComponent class="cmt"></myComponent>
     <div class = "books">
       <span class = "book" v-for="(book,index) in books">
@@ -99,7 +98,7 @@
   margin-left: 15%;
   display: inline-block;
   float: none;
-  margin-top: 5%;
+  margin-top: 2%;
   padding: 0;
   width: 70%;
   background-color: rgb(255, 255, 255);
@@ -123,9 +122,8 @@
   float: right;
 }
 .cmt { /** 轮播图 */
-  float: right;
-  margin-right: 5%;
-  margin-top: 1%;
+  margin-left: 5%;
+  margin-top: 2%;
 }
 .block {/**分页 */
   margin-left: 31%;

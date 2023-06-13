@@ -78,6 +78,7 @@
 
 <style>
 .nav{
+   
    background-color: rgb(65, 110, 120);
    border-bottom:1px solid #000000;
    height: 60px;
