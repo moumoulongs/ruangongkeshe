@@ -32,6 +32,9 @@ export const apicheckOut = p => get('/checkOut',p)
 //获取订单
 export const apigetMyOrder = p => get('/getMyOrder',p)
 
+//订单详情
+export const apigetOrderInfo1 = p => post('/getOrderInfo1', p);
+
 //获取封面
 export const apigetBookCover = p => post('/getBookCover',p)
 
