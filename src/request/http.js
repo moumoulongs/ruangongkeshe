@@ -76,4 +76,16 @@ axios.interceptors.response.use(res => {
     });
 }
 
+export function img_post(url, params) {
+    url = axios.defaults.baseURL + url;
+    return new Promise((resolve, reject) => {
+         axios.post(url, {params,responseType: 'blob'})
+        .then(res => {
+            resolve(res);
+        })
+        .catch(err =>{
+            reject(err);
+        })
+    });
+}
 

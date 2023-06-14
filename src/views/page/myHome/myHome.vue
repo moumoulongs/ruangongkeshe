@@ -3,7 +3,7 @@
     <myComponent class="cmt"></myComponent>
     <div class = "books">
       <span class = "book" v-for="(book,index) in books">
-        <img src = "./001.jpg">
+        <img v-bind:src="img[index]" />
         <p>{{ book.title }}</p>
         <p>书籍价格：￥{{ book.price }}</p>
         <el-button size="medium" @click="atc(book.id)">加入购物车</el-button>
@@ -24,13 +24,14 @@
 <script>
   import MyComponent from './myComponent.vue'
   import cric from './cric.vue'
-  import { apiGetBook , apiaddBookToCar} from '../../../request/api'
+  import axios from 'axios'
+  import { apiGetBook , apiaddBookToCar, apigetBookCover} from '../../../request/api'
 
 
 
   export default {
     components: {
-      MyComponent, apiGetBook, cric, apiaddBookToCar
+      MyComponent, apiGetBook, cric, apiaddBookToCar, apigetBookCover, axios
     },
     data () {
       return {
@@ -40,6 +41,8 @@
         },
         page:1,
         books: [],
+        img:[],
+        imgpath:[],
       }
     },
     inject: ["reload"],
@@ -50,6 +53,18 @@
         apiGetBook(formData).then(res => {
           this.books = res.data.message.res.books;
           console.log(this.books)
+          this.imgpath = {};
+          this.img = [];
+          for(var i in res.data.message.res.books)
+          {
+            let imgPath = this.books[i].imgPath
+            let formData = new FormData();
+            formData.append('imgpath',imgPath)
+            axios.post('http://localhost:8080/getBookCover', formData, {responseType: 'arraybuffer' }).then(res => {
+              // let blob = new Blob([res], { type: 'image/' });
+              this.img.push(URL.createObjectURL(new Blob([new Uint8Array(res.data)], { type: 'image/jpeg' })));
+            })
+          }
         })
         // this.reload();
       },
@@ -74,14 +89,26 @@
       let formData = new FormData()
         formData.append("pageNo",1);
       apiGetBook(formData).then(res => {
-        
         this.books = res.data.message.res.books;
-        console.log(res.data.message.res.books)
+        for(var i in res.data.message.res.books)
+        {
+          let imgPath = this.books[i].imgPath
+          let formData = new FormData();
+          formData.append('imgpath',imgPath)
+          axios.post('http://localhost:8080/getBookCover', formData, {responseType: 'arraybuffer' }).then(res => {
+            // let blob = new Blob([res], { type: 'image/' });
+            this.img.push(URL.createObjectURL(new Blob([new Uint8Array(res.data)], { type: 'image/jpeg' })));
+          })
+        }
+        console.log(this.img);
       })
     },
     created: function() {
+      let img = this.img;
       console.log("Created")
-      console.log(document.cookie)
+      console.log(img);
+      console.log(img.length);
+      console.log("asdads")
     },
   }
 
@@ -117,6 +144,7 @@
 }
 .book > img {
   margin-left: 13%;
+  height: 240px;
 }
 .book > button{
   float: right;
