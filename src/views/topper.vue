@@ -82,7 +82,7 @@
    
    background-color: rgb(65, 110, 120);
    border-bottom:1px solid #000000;
-   height: 83px;
+   height: 60px;
 }
 .nav div {
    display: inline-block;
@@ -103,14 +103,12 @@
 }
 .nav li {
    display: inline-block;
-   margin-top: 10px;
    height: 100%;
 }
 .nav a {
    display: inline-block;
    padding: 0 15px;
    color: rgb(248, 229, 195);
-   font-size: 20px;
    text-decoration: none;
 }
 .nav a:hover {

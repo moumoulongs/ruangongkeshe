@@ -4,8 +4,8 @@
     <div class = "books">
       <span class = "book" v-for="(book,index) in books">
         <img v-bind:src="img[index]" />
-        <p>{{ book.title }}</p>
-        <p>书籍价格：￥{{ book.price }}</p>
+        <div>名称：{{ book.title }}</div>
+        <div>书籍价格：￥{{ book.price }}</div>
         <el-button size="medium" @click="atc(book.id)">加入购物车</el-button>
       </span>
       <div class="block">
@@ -144,7 +144,7 @@
 }
 .book > img {
   margin-left: 20%;
-  height: 150px;
+  height: 110px;
 }
 .book > button{
   float: right;

@@ -27,7 +27,7 @@
   .el-carousel__item:nth-child(2n) {
     background-color: #99a9bf00;
   }
-  
+
   .el-carousel__item:nth-child(2n+1) {
     background-color: #d3dce600;
   }
