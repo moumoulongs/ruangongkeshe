@@ -9,6 +9,7 @@
         </div>
         <div class="nav_right">
             <ul>
+               <li v-if="isShow[0]"><router-link to="/adminlogin">管理系统</router-link></li>
                <li v-if="isShow[0]"><router-link to="/login">登录</router-link></li>
                <li v-if="isShow[0]"><router-link to="/register">注册</router-link></li>
                <li v-if="isShow[1]">

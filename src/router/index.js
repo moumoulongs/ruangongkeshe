@@ -8,6 +8,7 @@ import AddGroups from '../views/page/addGroups/addGroups.vue'
 import Essay from '../views/page/essay/essay.vue'
 import Register from '../views/page/register/register.vue'
 import Login from '../views/page/login/login.vue'
+import adminLogin from '../views/page/adminLogin/adminLogin.vue'
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,7 @@ const routes = [
     {path: '/addgroups', component: AddGroups},
     {path: '/register', component: Register},
     {path: '/login', component: Login},
+    {path: '/adminlogin', component: adminLogin},
     {path: '/essay/:zid', component: Essay, props: true},
 ]
 

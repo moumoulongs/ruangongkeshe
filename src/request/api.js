@@ -3,7 +3,11 @@ import { get , post } from './http'
 
 
 //登录
-export const apiLogin = p => post('/login', p, {withCredentials: true});
+export const apiLogin = p => post('/login', p);
+
+//管理员登录
+
+export const apiadminLogin = p => post('/adminLogin', p);
 
 //注册
 export const apiRegister = p => post('/reGist',p);
