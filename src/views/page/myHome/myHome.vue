@@ -144,7 +144,7 @@
 }
 .book > img {
   margin-left: 13%;
-  height: 240px;
+  height: 180px;
 }
 .book > button{
   float: right;
