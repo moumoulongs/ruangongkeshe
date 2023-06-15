@@ -122,12 +122,12 @@
   height: 100%;
 }
 .books {
-  margin-left: 15%;
+  margin-left: 20%;
   display: inline-block;
   float: none;
   margin-top: 2%;
   padding: 0;
-  width: 70%;
+  width: 50%;
   background-color: rgb(255, 255, 255);
   border-radius: 1px;
 }
@@ -143,8 +143,8 @@
   top: 0;
 }
 .book > img {
-  margin-left: 13%;
-  height: 180px;
+  margin-left: 20%;
+  height: 150px;
 }
 .book > button{
   float: right;
