@@ -4,11 +4,11 @@
 			<div class="input-box">
 				<i class="iconfont">&#xe609;</i>
 				
-				<input type="text"  v-model="form.username" placeholder="账号"/>
+				<input type="text"  v-model="form.adminname" placeholder="账号"/>
 			</div>
 			<div class="input-box">
 				<i class="iconfont">&#xe605;</i>
-				<input type="password" placeholder="密码" v-model="form.password"/>
+				<input type="password" placeholder="密码" v-model="form.adminpassword"/>
 			</div>
 			<button @click="submit">登录</button>
 		</div>
